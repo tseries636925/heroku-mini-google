@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Result Of Your Search</title>
+<style>
+*{
+    box-sizing: border-box;
+    margin:0px;
+}
+#searchfield{
+width:500px;
+height:35px;
+border-radius:5px;
+border:1px solid green;
+}
+
+#gobtn{
+width:100px;
+height:39px;
+border-radius:5px;
+border:1px solid green;
+background-color:white;
+font-size:17px;
+}
+
+#gobtn:hover{
+background-color:green;
+color:white;
+}
+
+a{
+    text-decoration:none;
+    color:blue;
+}
+
+p{
+
+margin-left:189.7px;
+}
+
+h2{
+margin-left:189.7px;
+}
+
+strong{
+font-size:26.5px;
+margin-left:0px;
+color:purple;
+}
+p.strong{
+font-size:27px;
+}
+p.bottom{
+margin-bottom:32px;
+font-size:18px;
+}
+
+p.top{
+font-size:18px;
+}
+
+</style>
+</head>
+<body>
+
+<table border="0" width="100%" bgcolor="f2f2f2">
+
+<tr>
+
+<td width="10%">
+<a href="index.html" ><img src="/static/logo.jpg" width="100%"></a>
+</td>
+
+<td>
+<form action="/result" method="POST">
+<input type="text" name="searchfield" id="searchfield">
+<input type="submit" name="searchbtn" value="GO!" id="gobtn">
+</form>
+</td>
+</tr>
+</table>
+
+<div class="container ">
+    <h2>Result for <strong>{{searched}}</strong></h2>
+    <br><br><br>
+    {% if searchdata|length == 0 %}
+        No data found. Add your first data now!
+    {% else %}
+    {% for search in searchdata %}
+        <p class="top">{{search.websitelink}}</p>
+        <p class="strong"><a href="{{search.websitelink}}">{{search.websitetitle}}</a></p>
+        <p class="bottom">{{search.websitedescription}}</p>
+    {% endfor %}
+    {% endif %}
+           
+       
+</div>
+
+
+</body>
+</html>
